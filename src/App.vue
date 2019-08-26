@@ -28,7 +28,7 @@
       </v-flex>
     </v-flex>
 
-    <v-flex v-else row wrap align-center class="row-flex">
+    <v-flex v-else row wrap align-center>
       <v-form
         ref="form"
         v-model="valid"
@@ -101,8 +101,17 @@ body {
   color: #2c3e50;
 }
 
-.row-flex {
+.row {
   margin: 0px !important;
+  /*for some reason the css for row in vuetify is not loading in production*/
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 .v-form{
   width: 25%;
