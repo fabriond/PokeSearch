@@ -16,7 +16,7 @@
       return-object
       prepend-inner-icon="mdi-magnify"
     ></v-autocomplete>
-    <v-flex row wrap justify-space-around class="mx-1 chosenList row-flex">
+    <v-flex row wrap justify-space-around class="mx-1 chosenList">
       <pokemon-card v-for="pokemon in chosen" :key="pokemon.id" :pokemonId="pokemon.id"/>
     </v-flex>
   </div>
