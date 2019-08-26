@@ -1,6 +1,6 @@
 <template>
   <v-app :dark="true">
-    <v-flex v-if="loggedIn" row>  
+    <v-flex v-if="loggedIn" row class="row-flex">  
       <v-navigation-drawer permanent fixed expand-on-hover>
         <v-list>
           <v-list-item to="/">

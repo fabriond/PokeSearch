@@ -1,5 +1,5 @@
 <template>
-  <v-flex row wrap align-center class="about">
+  <v-flex row wrap align-center class="about row-flex">
     <div class="about-text">
       <h1>Who made this site?</h1>
       <h2>Well, me of couse</h2>
