@@ -1,14 +1,98 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app :dark="true">
+    <v-flex v-if="loggedIn" row>  
+      <v-navigation-drawer permanent fixed expand-on-hover>
+        <v-list>
+          <v-list-item to="/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/about">
+            <v-list-item-icon>
+              <v-icon>mdi-help</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>About</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-flex>
+        <router-view class="content"/>
+      </v-flex>
+    </v-flex>
+
+    <v-flex v-else row wrap align-center>
+      <v-form
+        ref="form"
+        v-model="valid"
+      >
+        <v-text-field
+          v-model="login"
+          :rules="rules"
+          label="Login"
+          type="text"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="password"
+          :rules="rules"
+          label="Senha"
+          type="password"
+        ></v-text-field>
+
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="validate"
+        >Validate</v-btn>
+      </v-form>
+    </v-flex>
+  </v-app>
 </template>
 
+<script>
+export default {
+  name: 'app',
+  components: {
+
+  },
+  data: () => ({
+    valid: true,
+    loggedIn: true,
+    login: null,
+    password: null,
+    rules: [
+      v => !!v || 'Field is required',
+    ]
+  }),
+  methods: {
+    validate(){
+      if (this.$refs.form.validate()) {
+        console.log(this.snackbar)
+        this.loggedIn = true
+      }
+      return;
+    },
+  }
+}
+</script>
+
 <style>
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  margin: 0; 
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,16 +100,17 @@
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.row {
+  margin: 0px !important;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.v-form{
+  width: 25%;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: rgb(80, 80, 80);
+}
+.content {
+  margin-left: 4%
 }
 </style>
