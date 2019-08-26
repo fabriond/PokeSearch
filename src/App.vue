@@ -28,7 +28,7 @@
       </v-flex>
     </v-flex>
 
-    <v-flex v-else row wrap align-center>
+    <v-flex v-else row wrap align-center class="row-flex">
       <v-form
         ref="form"
         v-model="valid"
@@ -66,7 +66,7 @@ export default {
   },
   data: () => ({
     valid: true,
-    loggedIn: true,
+    loggedIn: false,
     login: null,
     password: null,
     rules: [
@@ -101,7 +101,7 @@ body {
   color: #2c3e50;
 }
 
-.row {
+.row-flex {
   margin: 0px !important;
 }
 .v-form{
